@@ -1,0 +1,10 @@
+<table>
+  <tr *ngFor=" let book of basket.books; let i = index">
+    <td>Tytuł:{{book.title}}</td>
+    <td>Cena: <strong>{{book.amount}}</strong></td>
+    <td><button (click)="removeBasketItem(i)">Usuń</button></td>
+  </tr>
+  <tr>
+    <td><strong>Cena:{{getBasketAmount()}}</strong></td>
+  </tr>
+</table>

@@ -1,0 +1,15 @@
+<div *ngFor=" let book of books" [ngStyle]="{'border-bottom': '1px solid black'}"
+     [ngClass]="{'main-item': book.saleability == saleability.NOT_FOR_SALE}">
+  <img src="{{book.smallThumbnail}}">
+  <p>{{book.title}}</p>
+  <p>Autor:</p>
+  <ul>
+    <li *ngFor="let author of book.authors">{{author}}</li>
+  </ul>
+  <p>{{book.description}}</p>
+  <p>{{book.amount ? book.amount + " zł" : ""}}</p>
+  <p><input type="checkbox" [checked]="book.isEbook" disabled></p>
+  <a *ngIf="book.saleability === saleability.FOR_SALE" [href]="book.buyLink">Kup Teraz</a>
+  <br>
+  <button *ngIf="book.saleability === saleability.FOR_SALE" (click)="addItemToBasket(book)">Dodaj do koszyka</button>
+</div>
