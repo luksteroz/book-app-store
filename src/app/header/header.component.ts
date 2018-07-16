@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {SharedService} from './shared.service';
+import {count} from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -7,15 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   counter: number = 0;
-
-  constructor() {}
-
+  constructor(private shared: SharedService) {}
   ngOnInit() {
-  }
-  incrementCounter () {
-
-    this.counter = this.counter + 1;
-    console.log('click increment', this.counter);
-
+    this.shared.counterBasketObservable.subscribe(data => this.counter = data);
   }
 }

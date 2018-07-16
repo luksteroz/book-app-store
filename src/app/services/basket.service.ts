@@ -2,7 +2,7 @@ import {Inject, Injectable} from '@angular/core';
 import {Book} from '../model/book';
 import {SESSION_STORAGE, WebStorageService} from 'angular-webstorage-service';
 import {Basket} from '../model/basket';
-import index from '@angular/cli/lib/cli';
+import {HeaderComponent} from '../header/header.component';
 
 @Injectable({
   providedIn: 'root'

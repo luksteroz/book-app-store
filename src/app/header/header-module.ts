@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {AppRoutingModule} from '../app-routing.module';
 import {HeaderComponent} from './header.component';
-import {HeaderService} from './header.service';
+import {SharedService} from './shared.service';
 import {AppComponent} from '../app.component';
 
 @NgModule({
@@ -17,7 +17,7 @@ import {AppComponent} from '../app.component';
     HeaderComponent
   ],
   providers: [
-    HeaderService
+    SharedService
   ],
   bootstrap: [AppComponent]
 })

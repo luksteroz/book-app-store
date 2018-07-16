@@ -4,7 +4,7 @@ import {Book} from './model/book';
 import {Saleability} from './model/saleability.enum';
 import {LOCAL_STORAGE, SESSION_STORAGE, StorageService, WebStorageService} from 'angular-webstorage-service';
 import {BasketService} from './services/basket.service';
-import {HeaderService} from './header/header.service';
+import {SharedService} from './header/shared.service';
 
 @Component({
   selector: 'app-root',

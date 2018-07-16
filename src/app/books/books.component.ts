@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Book} from '../model/book';
 import {GoogleBookService} from '../services/google-book.service';
 import {BasketService} from '../services/basket.service';
-import {HeaderService} from '../header/header.service';
+import {SharedService} from '../header/shared.service';
 import {Saleability} from '../model/saleability.enum';
 
 @Component({
@@ -14,7 +14,11 @@ export class BooksComponent implements OnInit {
   title = 'app';
   books: Array<Book> = new Array();
   saleability = Saleability;
-  constructor(private bookService: GoogleBookService, private basketService: BasketService, private header: HeaderService) {}
+  constructor(
+    private bookService: GoogleBookService,
+    private basketService: BasketService,
+    private shared: SharedService) {}
+  @Output() amountCounter = new EventEmitter<any>();
 
   ngOnInit(): void {
     this.searchByTitle('Harry Potter');
@@ -61,7 +65,7 @@ export class BooksComponent implements OnInit {
   }
   addItemToBasket (book): void {
     this.basketService.addItem(book);
-    this.header.incrementCounter();
+    this.shared.incrementCounter();
   }
 
 }

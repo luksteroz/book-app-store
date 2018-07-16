@@ -9,6 +9,8 @@ import { StorageServiceModule } from 'angular-webstorage-service';
 import { BasketComponent } from './basket/basket.component';
 import { HeaderModule } from './header/header-module';
 import { BooksComponent } from './books/books.component';
+import { PageComponent } from './page/page.component';
+import { DeliveryFormComponent } from './delivery-form/delivery-form.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { BooksComponent } from './books/books.component';
     ProductListComponent,
     FooterComponent,
     BasketComponent,
-    BooksComponent
+    BooksComponent,
+    PageComponent,
+    DeliveryFormComponent
   ],
   imports: [
     BrowserModule,

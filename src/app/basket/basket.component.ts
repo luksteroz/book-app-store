@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Basket} from '../model/basket';
 import {BasketService} from '../services/basket.service';
+import {SharedService} from '../header/shared.service';
 
 @Component({
   selector: 'app-basket',
@@ -9,7 +10,7 @@ import {BasketService} from '../services/basket.service';
 })
 export class BasketComponent implements OnInit {
   private basket: Basket;
-  constructor(private basketService: BasketService) { }
+  constructor(private basketService: BasketService, private shared: SharedService) { }
 
   ngOnInit() {
     this.setBasket();
@@ -26,6 +27,7 @@ export class BasketComponent implements OnInit {
   removeBasketItem(index) {
     this.basketService.removeBasketItem(index);
     this.setBasket();
+    this.shared.decrementCounter();
   }
 }
 
