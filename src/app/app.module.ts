@@ -11,6 +11,8 @@ import { HeaderModule } from './header/header-module';
 import { BooksComponent } from './books/books.component';
 import { PageComponent } from './page/page.component';
 import { DeliveryFormComponent } from './delivery-form/delivery-form.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import {SearchModule} from './search-bar/search.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,6 @@ import { DeliveryFormComponent } from './delivery-form/delivery-form.component';
     ProductListComponent,
     FooterComponent,
     BasketComponent,
-    BooksComponent,
     PageComponent,
     DeliveryFormComponent
   ],
@@ -26,7 +27,8 @@ import { DeliveryFormComponent } from './delivery-form/delivery-form.component';
     BrowserModule,
     HttpClientModule,
     StorageServiceModule,
-    HeaderModule
+    HeaderModule,
+    SearchModule
   ],
   providers: [],
   bootstrap: [AppComponent]

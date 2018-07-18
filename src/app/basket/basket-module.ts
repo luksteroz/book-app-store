@@ -3,6 +3,7 @@ import {AppComponent} from '../app.component';
 import {CommonModule} from '@angular/common';
 import {AppRoutingModule} from '../app-routing.module';
 import {BasketComponent} from './basket.component';
+import {DeliveryFormComponent} from '../delivery-form/delivery-form.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import {BasketComponent} from './basket.component';
     BasketComponent
   ],
   declarations: [
-    BasketComponent
+    BasketComponent,
+    DeliveryFormComponent
   ],
   bootstrap: [AppComponent]
 })

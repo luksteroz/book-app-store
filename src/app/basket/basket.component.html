@@ -5,7 +5,9 @@
     <td><button (click)="removeBasketItem(i)">Usuń</button></td>
   </tr>
   <tr>
-    <td><strong>Cena:{{getBasketAmount()}}</strong></td>
+    <td><strong>Cena:{{basketAmount}}</strong></td>
+    <p class="summary-cost">Cena z dostawą {{summaryAmount}}</p>
   </tr>
 </table>
-<app-delivery-form></app-delivery-form>
+<app-delivery-form [productsAmount]="basketAmount" (summaryAmount)="updateAmount($event)"></app-delivery-form>
+
