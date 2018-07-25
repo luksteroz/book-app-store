@@ -34,6 +34,7 @@ export class BooksComponent implements OnInit {
   //     .subscribe(pictures => this.pictures = pictures);
   // }
   searchByTitle(title: string): void {
+    this.books = [];
     this.bookService.searchByTitle(title)
       .subscribe(bookService => this.mapBook(bookService));
   }

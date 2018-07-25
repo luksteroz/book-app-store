@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {BooksComponent} from '../books/books.component';
 
 @Component({
   selector: 'app-search-bar',
@@ -6,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
-
+  title: string;
   constructor() { }
-
+  @ViewChild(BooksComponent) child: BooksComponent;
   ngOnInit() {
   }
-  searchTitle($event) {
-    $event.preventDefault();
-    console.log($event.target.value)
+  searchTitle() {
+    console.log(this.title);
+    this.child.searchByTitle(this.title);
   }
 }

@@ -1,7 +1,9 @@
 <div>
   <h3>Szukaj</h3>
-  <form (submit)="searchTitle($event)">
-    <label>Tytuł: <input type="search"></label>
+  <form #searchForm="ngForm" (submit)="searchTitle()">
+    <label>Słowo kluczowe:
+      <input type="text" [(ngModel)]="title" name="title">
+    </label>
     <input type="submit">
   </form>
 </div>

@@ -1,26 +1,90 @@
-<form>
+<form #delivery="ngForm" (submit)="formValidator()">
   <div>
     <p>Adres</p>
-    <label>Imię<input type="text" id="name"></label>
-    <label>Nazwisko<input type="text" id="surname"></label>
-    <label>Kod pocztowy<input type="number" id="postNumber"></label>
-    <label>Ulica<input type="text" id="street"></label>
-    <label>Czy adres dostawy taki sam?<input type="checkbox" name="deliveryAdressCheck" (click)="checkboxChange($event)"></label>
+    <label>Imię
+      <input type="text"
+             id="name"
+             minlength="4"
+             required
+             [(ngModel)]="deliveryForm.name"
+             name="name"
+             #name="ngModel">
+    </label>
+    <div *ngIf="name.invalid && (name.dirty || name.touched)">
+    <p *ngIf="name.errors.required">
+      Imię jest wymagane
+    </p>
+      <p *ngIf="name.errors.minlength">Imię jest za krótkie</p>
+    </div>
+    <label>Nazwisko
+      <input type="text"
+             id="surname"
+             [(ngModel)]="deliveryForm.surname"
+             name="surname">
+    </label>
+    <label>Kod pocztowy
+      <input
+        type="text"
+        id="postNumber"
+        [(ngModel)]="deliveryForm.postNumber"
+        name="postNumber"
+        appZipCode>
+    </label>
+    <label>Ulica
+      <input type="text"
+             id="street"
+             [(ngModel)]="deliveryForm.street"
+             name="street">
+    </label>
+    <label>Czy adres dostawy taki sam?
+      <input type="checkbox"
+             name="deliveryAdressCheck"
+             (click)="checkboxChange($event)"
+             [(ngModel)]="deliveryForm.deliveryAdressCheck">
+    </label>
   </div>
   <div *ngIf="!isdeliveryAdressCheck">
     <p>Adres dostawy</p>
-    <label>Ulica<input type="text" id="streetDelivery"></label>
-    <label>Kod pocztowy<input type="text" id="postNumberDelivery"></label>
-    <label>Czy faktura VAT?<input type="checkbox" id="isInvoiceDelivery" (click)="checkboxChange($event)"></label>
+    <label>Ulica
+      <input type="text"
+             id="streetDelivery"
+             name="streetDelivery"
+             [(ngModel)]="deliveryForm.streetDelivery">
+    </label>
+    <label>Kod pocztowy
+      <input type="text"
+             name="postNumberDelivery"
+             id="postNumberDelivery"
+             [(ngModel)]="deliveryForm.postNumberDelivery">
+    </label>
+    <label>Czy faktura VAT?
+      <input type="checkbox"
+             name="isInvoiceDelivery"
+             id="isInvoiceDelivery"
+             (click)="checkboxChange($event)"
+             [(ngModel)]="deliveryForm.isInvoiceDelivery">
+    </label>
   </div>
   <div *ngIf="!isInvoice">
     <p>Dane do faktury</p>
-    <label>Nazwa firmy<input type="text" id="streetInvoice"></label>
-    <label>nr NIP<input type="number" id="invoiceNumber"></label>
+    <label>Nazwa firmy
+      <input type="text"
+             name="streetInvoice"
+             id="streetInvoice"
+             [(ngModel)]="deliveryForm.streetInvoice">
+    </label>
+    <label>nr NIP
+      <input type="number"
+             name="invoiceNumber"
+             id="invoiceNumber"
+             [(ngModel)]="deliveryForm.invoiceNumber">
+    </label>
   </div>
   <div>
     <p>Sposób płatności</p>
-    <select id="paymentChoice" (change)="changePaymentCost($event.target.value)">
+    <select id="paymentChoice"
+            name="paymentChoice"
+            (change)="changePaymentCost($event.target.value)">
       <option value="PRZELEW">Przelew</option>
       <option value="POBRANIE">Za pobraniem</option>
     </select>
@@ -28,7 +92,10 @@
   </div>
   <div>
     <p>Sposób dostawy</p>
-    <select id="deliveryChoice" (change)="getShippingCost($event.target.value)">
+    <select id="deliveryChoice"
+            name="deliveryChoice"
+            (change)="getShippingCost($event.target.value)"
+            [(ngModel)]="deliveryForm.deliveryChoice">
       <option value="KURIER" selected>Kurier</option>
       <option value="PACZKOMAT">Paczkomat</option>
       <option value="OSOBISTY">Odbiór osobisty</option>
@@ -36,4 +103,5 @@
     <p>Koszt dostawy: {{shippingCost}}</p>
     <p class="summary-cost">Cena z dostawą{{amount}}</p>
   </div>
+  <input type="submit" [disabled]="delivery.invalid">
 </form>

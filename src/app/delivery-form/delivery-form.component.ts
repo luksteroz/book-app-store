@@ -1,6 +1,8 @@
 import {Component, OnInit, Input, Output, EventEmitter, SimpleChange, SimpleChanges, OnChanges} from '@angular/core';
 import {ShippingMethodEnum} from '../model/shipping-method.enum';
 import {PaymentMethodEnum} from '../model/payment-method.enum';
+import {DeliveryForm} from '../model/delivery-form';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-delivery-form',
@@ -14,8 +16,10 @@ export class DeliveryFormComponent implements OnInit, OnChanges {
   @Input() productsAmount: number;
   @Output() summaryAmount = new EventEmitter();
   amount: number;
-  isdeliveryAdressCheck: boolean = false;
-  isInvoice: boolean = false;
+  isdeliveryAdressCheck = false;
+  isInvoice = false;
+  deliveryForm: DeliveryForm = new DeliveryForm();
+  heroForm: Object;
   ngOnChanges(changes:  SimpleChanges) {
     const amountChanges: SimpleChange = changes['productsAmount'];
     if (amountChanges) {
@@ -46,5 +50,24 @@ export class DeliveryFormComponent implements OnInit, OnChanges {
     console.log(value, PaymentMethodEnum[value])
     this.paymentCost = parseFloat(PaymentMethodEnum[value]);
     this.setAmount();
+  }
+  formValidator(){
+    console.log(this.deliveryForm.name);
+    // this.deliveryForm.name = new FormGroup({
+    //   'name': new FormControl(this.deliveryForm.name, [
+    //     Validators.required,
+    //     Validators.minLength(4),
+    //     // nameValidator(/bob/i) // <-- Here's how you pass in the custom validator.
+    //   ])
+    // });
+  }
+  getName(e) {
+    console.log(e.currentTarget.name);
+    this.heroForm = new FormGroup({
+      'name': new FormControl(this.deliveryForm.name, [
+        Validators.required,
+        Validators.minLength(4)
+      ])
+    });
   }
 }

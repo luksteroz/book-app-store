@@ -13,22 +13,24 @@ import { PageComponent } from './page/page.component';
 import { DeliveryFormComponent } from './delivery-form/delivery-form.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import {SearchModule} from './search-bar/search.module';
+import {FormsModule} from '@angular/forms';
+import {BasketModule} from './basket/basket-module';
+import { ZipCodeDirective } from './zip-code.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
     FooterComponent,
-    BasketComponent,
-    PageComponent,
-    DeliveryFormComponent
+    PageComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     StorageServiceModule,
     HeaderModule,
-    SearchModule
+    SearchModule,
+    BasketModule
   ],
   providers: [],
   bootstrap: [AppComponent]

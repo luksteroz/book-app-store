@@ -4,20 +4,19 @@ import {CommonModule} from '@angular/common';
 import {AppRoutingModule} from '../app-routing.module';
 import {BasketComponent} from './basket.component';
 import {DeliveryFormComponent} from '../delivery-form/delivery-form.component';
+import {DeliveryFormModule} from '../delivery-form/delivery-form.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    AppRoutingModule
+    DeliveryFormModule
   ],
   exports: [
     BasketComponent
   ],
   declarations: [
-    BasketComponent,
-    DeliveryFormComponent
-  ],
-  bootstrap: [AppComponent]
+    BasketComponent
+  ]
 })
 export class BasketModule {
 }
