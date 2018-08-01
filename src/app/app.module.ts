@@ -15,7 +15,6 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import {SearchModule} from './search-bar/search.module';
 import {FormsModule} from '@angular/forms';
 import {BasketModule} from './basket/basket-module';
-import { ZipCodeDirective } from './zip-code.directive';
 
 @NgModule({
   declarations: [

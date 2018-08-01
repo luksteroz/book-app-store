@@ -11,10 +11,10 @@
              #name="ngModel">
     </label>
     <div *ngIf="name.invalid && (name.dirty || name.touched)">
-    <p *ngIf="name.errors.required">
+    <p *ngIf="name.hasError('required')">
       Imię jest wymagane
     </p>
-      <p *ngIf="name.errors.minlength">Imię jest za krótkie</p>
+      <p *ngIf="name.hasError('minlength')">Imię jest za krótkie</p>
     </div>
     <label>Nazwisko
       <input type="text"
@@ -28,8 +28,12 @@
         id="postNumber"
         [(ngModel)]="deliveryForm.postNumber"
         name="postNumber"
-        appZipCode>
+        appZipCode
+        #postNumber="ngModel"
+      required>
     </label>
+    <span *ngIf="postNumber.hasError('zipCodeError') && (postNumber.dirty || postNumber.touched) && !postNumber.hasError('required')">Wprowadź poprawny kod pocztowy XX-XXX</span>
+    <span *ngIf="postNumber.hasError('required')">Kod pocztowy jest wymagany</span>
     <label>Ulica
       <input type="text"
              id="street"
@@ -62,7 +66,8 @@
              name="isInvoiceDelivery"
              id="isInvoiceDelivery"
              (click)="checkboxChange($event)"
-             [(ngModel)]="deliveryForm.isInvoiceDelivery">
+             [(ngModel)]="deliveryForm.isInvoiceDelivery"
+              #isInvoiceDelivery="ngModel">
     </label>
   </div>
   <div *ngIf="!isInvoice">
@@ -74,11 +79,15 @@
              [(ngModel)]="deliveryForm.streetInvoice">
     </label>
     <label>nr NIP
-      <input type="number"
+      <input type="text"
              name="invoiceNumber"
              id="invoiceNumber"
-             [(ngModel)]="deliveryForm.invoiceNumber">
+             [(ngModel)]="deliveryForm.invoiceNumber"
+             appNipValidate
+             #invoiceNumber="ngModel"
+             mask="999-999-99-99">
     </label>
+    <span *ngIf="invoiceNumber.hasError('nipError') && (invoiceNumber.dirty || invoiceNumber.touched)">Wpisz poprawny NIP XXX-XXX-XX-XX</span>
   </div>
   <div>
     <p>Sposób płatności</p>

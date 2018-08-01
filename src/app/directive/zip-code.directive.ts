@@ -7,10 +7,11 @@ import {AbstractControl, NG_VALIDATORS, Validator} from '@angular/forms';
 })
 export class ZipCodeDirective implements Validator  {
   constructor() { }
+  regExp: any = '\\d{2}-\\d{3}';
+  currentValue: string;
   @Input('appZipCode') currentZipCode: any;
   validate(control: AbstractControl): {[key: string]: any} | null {
-    console.log(control.value);
-    return this.currentZipCode;
+    this.currentValue = control.value;
+    return this.currentValue != null && this.currentValue.match(this.regExp) ? null : {'zipCodeError': true};
   }
 }
-
